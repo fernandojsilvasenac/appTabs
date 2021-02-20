@@ -2,6 +2,26 @@
 // http://ionicframework.com/docs/theming/
 
 /** Ionic CSS Variables **/
+
+:root {
+  --ion-color-padrao: #8944DF;
+  --ion-color-padrao-rgb: 137,68,223;
+  --ion-color-padrao-contrast: #ffffff;
+  --ion-color-padrao-contrast-rgb: 255,255,255;
+  --ion-color-padrao-shade: #793cc4;
+  --ion-color-padrao-tint: #9557e2;
+}
+
+.ion-color-padrao {
+  --ion-color-base: var(--ion-color-padrao);
+  --ion-color-base-rgb: var(--ion-color-padrao-rgb);
+  --ion-color-contrast: var(--ion-color-padrao-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-padrao-contrast-rgb);
+  --ion-color-shade: var(--ion-color-padrao-shade);
+  --ion-color-tint: var(--ion-color-padrao-tint);
+}
+
+
 :root {
   /** primary **/
   --ion-color-primary: #3880ff;
@@ -75,6 +95,7 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
+
 
 @media (prefers-color-scheme: dark) {
   /*

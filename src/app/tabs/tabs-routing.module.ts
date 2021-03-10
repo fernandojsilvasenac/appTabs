@@ -20,10 +20,6 @@ const routes: Routes = [
         loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
       },
       {
-        path: 'options',
-        loadChildren: () => import('../options/options.module').then( m => m.OptionsPageModule)
-      },
-      {
         path: '',
         redirectTo: '/tabs/pain',
         pathMatch: 'full'

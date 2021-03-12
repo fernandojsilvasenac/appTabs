@@ -1,3 +1,4 @@
+import { AuthGuard } from './../shared/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
@@ -9,15 +10,16 @@ const routes: Routes = [
     children: [
       {
         path: 'pain',
-        loadChildren: () => import('../pain/pain.module').then( m => m.PainPageModule)
+        loadChildren: () => import('../pain/pain.module').then( m => m.PainPageModule),
+        canActivate: [AuthGuard]
       },
       {
         path: 'symptoms',
         loadChildren: () => import('../symptoms/symptoms.module').then( m => m.SymptomsPageModule)
       },
       {
-        path: 'medicamentos',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'medicaments',
+        loadChildren: () => import('../medicament/medicament.module').then(m => m.MedicamentPageModule)
       },
       {
         path: '',
@@ -28,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/pain',
+    redirectTo: '/login',
     pathMatch: 'full'
   }
 ];

@@ -5,8 +5,9 @@
 </ion-header>
 
 <ion-content>
+
   <ion-list>
-    <ion-radio-group value="biff">
+    <ion-radio-group (ionChange)="onChange()" [(ngModel)]="tipousuario">
       <ion-list-header>
         <ion-label>Qual usuário você é?</ion-label>
       </ion-list-header>
@@ -18,9 +19,33 @@
 
       <ion-item>
         <ion-label>Agente de Saúde</ion-label>
-        <ion-radio slot="start" value="agente"></ion-radio>
+        <ion-radio slot="start" value="agentesaude"></ion-radio>
       </ion-item>
 
     </ion-radio-group>
+
+    <ion-item *ngIf="tipousuario=='paciente'">
+      <ion-label position="stacked">Nome Paciente</ion-label>
+      <ion-input name="namepaciente" type="text" placeholder="" [(ngModel)]="usersPaciente.name"></ion-input>
+    </ion-item>
+
+    <ion-item  *ngIf="tipousuario=='agentesaude'">
+      <ion-label position="stacked">Nome do Agende de Saúde</ion-label>
+      <ion-input name="nameagentesaude" type="text" placeholder=""  [(ngModel)]="usersAgentesaude.name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">E-mail</ion-label>
+      <ion-input name="email" type="email" placeholder="E-mail"  [(ngModel)]="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Senha</ion-label>
+      <ion-input name="password" type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+
+    <ion-button *ngIf="tipousuario=='paciente'" expand="block" color="light" (click)="registerPaciente()">Cadastrar</ion-button>
+    <ion-button *ngIf="tipousuario=='agentesaude'" expand="block" color="light" (click)="registerAgentesaude()">Cadastrar</ion-button>
+
   </ion-list>
 </ion-content>

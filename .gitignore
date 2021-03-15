@@ -17,7 +17,7 @@ $RECYCLE.BIN/
 log.txt
 npm-debug.log*
 
-firebaseConfig.ts
+/src/firebaseConfig.ts
 /.idea
 /.ionic
 /.sass-cache

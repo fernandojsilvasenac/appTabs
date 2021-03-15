@@ -41,7 +41,7 @@ export class SignupPage implements OnInit {
     try {
       await this.auth.registerPaciente(this.usersPaciente);
       this.toast.showMessageBottom('Usuário registrado com sucesso !!!', 'secondary');
-      this.router.navigate(['tabs']);
+      this.router.navigate(['login']);
     } catch (error) {
       this.toast.showMessageTop(error,'danger');
     }

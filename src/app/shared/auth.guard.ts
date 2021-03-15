@@ -9,6 +9,7 @@ import { ToastService } from './toast.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+  username: string;
 
   constructor(
     private router: Router,
@@ -28,7 +29,14 @@ export class AuthGuard implements CanActivate {
         if(!usuarioLogado){
           this.router.navigate(['/login']);
           this.toast.showMessageTop('Usuário não logado!!!', 'warning');
+        } else {
+          //
+          // this.afa.authState.subscribe(user =>{
+          //   this.username = user.displayName;
+          //   this.toast.showMessageBottom(`Bem vindo ${this.username}`,'light');
+          // })
         }
+
       })
     )
 

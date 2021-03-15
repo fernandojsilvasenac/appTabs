@@ -30,6 +30,13 @@ export class AuthService {
 
   registerPaciente(user: UsersPaciente){
     this.afa.createUserWithEmailAndPassword(user.email, user.password);
+
+    this.afa.onAuthStateChanged((credential)=>{
+      credential.updateProfile({displayName: user.name, photoURL: ''});
+      if(credential){
+        this.registerUserPaciente(user, credential.uid);
+      }
+    })
   }
 
   registerUserPaciente(user: UsersPaciente, id: string){

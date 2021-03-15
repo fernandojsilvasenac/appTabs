@@ -1,3 +1,4 @@
+import { AuthService } from './../shared/auth.service';
 import { Component } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 
@@ -8,7 +9,8 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class TabsPage {
 
-  constructor(public actionSheetController: ActionSheetController) {}
+  constructor(public actionSheetController: ActionSheetController,
+    private auth: AuthService) {}
 
   async presentActionSheet() {
     const actionSheet = await this.actionSheetController.create({
@@ -40,11 +42,12 @@ export class TabsPage {
           console.log('Favorite clicked');
         }
       }, {
-        text: 'Cancel',
-        icon: 'close',
+        text: 'Sair / Logout',
+        icon: 'exit',
         role: 'cancel',
         handler: () => {
           console.log('Cancel clicked');
+          this.auth.logout();
         }
       }]
     });

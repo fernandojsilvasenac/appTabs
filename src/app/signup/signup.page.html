@@ -29,9 +29,34 @@
       <ion-input name="namepaciente" type="text" placeholder="" [(ngModel)]="usersPaciente.name"></ion-input>
     </ion-item>
 
+    <ion-item *ngIf="tipousuario=='paciente'">
+      <ion-label position="stacked">Cartão SUS</ion-label>
+      <ion-input name="cartaosus" type="text" placeholder="" [(ngModel)]="usersPaciente.cartaosus"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="tipousuario=='paciente'">
+      <ion-label>Faixa etária</ion-label>
+      <ion-select  [(ngModel)]="usersPaciente.faixaetaria" placeholder="Selecione">
+        <ion-select-option value="Criança">Criança</ion-select-option>
+        <ion-select-option value="Joven">Jovem</ion-select-option>
+        <ion-select-option value="Adulto">Adulto</ion-select-option>
+        <ion-select-option value="Idoso">Idoso</ion-select-option>
+      </ion-select>
+    </ion-item>
+
     <ion-item  *ngIf="tipousuario=='agentesaude'">
       <ion-label position="stacked">Nome do Agende de Saúde</ion-label>
       <ion-input name="nameagentesaude" type="text" placeholder=""  [(ngModel)]="usersAgentesaude.name"></ion-input>
+    </ion-item>
+
+    <ion-item  *ngIf="tipousuario=='agentesaude'">
+      <ion-label position="stacked">Registro</ion-label>
+      <ion-input name="registro" type="text" placeholder=""  [(ngModel)]="usersAgentesaude.registro"></ion-input>
+    </ion-item>
+
+    <ion-item  *ngIf="tipousuario=='agentesaude'">
+      <ion-label position="stacked">Estado(uf)</ion-label>
+      <ion-input name="estado" type="text" placeholder=""  [(ngModel)]="usersAgentesaude.estado"></ion-input>
     </ion-item>
 
     <ion-item>

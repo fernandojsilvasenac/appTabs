@@ -40,11 +40,14 @@ export class AuthService {
   }
 
   registerUserPaciente(user: UsersPaciente, id: string){
-        const { name, email  } = user;
+        const { tipousuario, name, email, cartaosus, faixaetaria  } = user;
         this.afs.collection('users').doc(id).set(
           {
+            tipousuario: tipousuario,
             name: name,
             email: email,
+            cartaosus: cartaosus,
+            faixaetaria: faixaetaria,
           }
         )
       }

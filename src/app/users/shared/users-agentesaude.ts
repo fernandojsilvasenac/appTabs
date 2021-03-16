@@ -3,7 +3,7 @@ export class UsersAgentesaude {
   name?: string;
   registro?: string;
   estado?: string;
-  tipo?: string; /** medico, enfermeiro, tec enfermagem  */
+  tipo?: string; /** medico, enfermeiro, tec enfermagem, etc...  */
   email?: string;
   password?: string;
 }

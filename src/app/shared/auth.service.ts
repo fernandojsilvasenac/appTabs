@@ -31,10 +31,10 @@ export class AuthService {
   registerPaciente(user: UsersPaciente){
     this.afa.createUserWithEmailAndPassword(user.email, user.password);
 
-    this.afa.onAuthStateChanged((credential)=>{
-      credential.updateProfile({displayName: user.name, photoURL: ''});
-      if(credential){
-        this.registerUserPaciente(user, credential.uid);
+    this.afa.onAuthStateChanged((users)=>{
+      users.updateProfile({displayName: user.name, photoURL: ''});
+      if(users){
+        this.registerUserPaciente(user, users.uid);
       }
     })
   }
@@ -51,9 +51,32 @@ export class AuthService {
           }
         )
       }
-  registerAgentesaude(user: UsersAgentesaude){
 
-  }
+      registerAgente(user: UsersAgentesaude){
+        this.afa.createUserWithEmailAndPassword(user.email, user.password);
+
+        this.afa.onAuthStateChanged((userProfile)=>{
+          userProfile.updateProfile({displayName: user.name, photoURL: ''});
+          if(userProfile){
+            this.registerAgentesaude(user, userProfile.uid);
+          }
+        })
+      }
+
+  registerAgentesaude(user: UsersAgentesaude, id: string){
+            const { tipousuario, name, email, registro, estado, id_professional, professional  } = user;
+        this.afs.collection('users').doc(id).set(
+          {
+            tipousuario: tipousuario,
+            name: name,
+            email: email,
+            registro: registro,
+            estado: estado,
+            id_professional: id_professional,
+            professional: professional,
+          }
+        )
+      }
 
   resetPassword(login: Login){
     this.afa.sendPasswordResetEmail(login.email);

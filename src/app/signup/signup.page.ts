@@ -1,3 +1,4 @@
+import { ProfessionalService } from './../shared/professional.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersAgentesaude } from './../users/shared/users-agentesaude';
@@ -5,6 +6,7 @@ import { UsersPaciente } from './../users/shared/users-paciente';
 import { ToastService } from './../shared/toast.service';
 import { AuthService } from './../shared/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-signup',
@@ -18,8 +20,13 @@ export class SignupPage implements OnInit {
   email: string;
   password: string;
   user: string;
+  professionals: any[] = [];
+
+  professionalDescription: string;
+
 
   constructor(private auth:AuthService,
+    private professionalService: ProfessionalService,
     private afa: AngularFireAuth,
     private toast: ToastService,
     private router: Router) { }
@@ -27,10 +34,18 @@ export class SignupPage implements OnInit {
   ngOnInit() {
     this.usersPaciente = new UsersPaciente();
     this.usersAgentesaude = new UsersAgentesaude();
+    this.professionalService.getAll().subscribe( (data:any) => {
+      this.professionals = data;
+    });
   }
 
-  onChange(){
-    console.log(this.tipousuario)
+  setProfessional(professional:any){
+      if(professional){
+        // console.log(professional);
+        this.usersAgentesaude.professional = this.professionals.find(item => item.id === this.usersAgentesaude.id_professional).description
+      } else {
+        this.usersAgentesaude.professional = "";
+      }
   }
 
   async registerPaciente(){
@@ -47,9 +62,26 @@ export class SignupPage implements OnInit {
     }
   }
 
+  getProfessional(id: string){
+    const subscribe = this.professionalService.getProfessional(id).subscribe( (data: any) =>{
+      subscribe.unsubscribe();
+      this.usersAgentesaude.professional = data.description;
+    })
+  }
 
-  registerAgentesaude(){
+  async registerAgentesaude(){
+    this.usersAgentesaude.email = this.email;
+    this.usersAgentesaude.password = this.password;
+    this.usersAgentesaude.tipousuario = this.tipousuario;
+    // this.getProfessional(this.usersAgentesaude.id_professional);
 
+    try {
+      await this.auth.registerAgente(this.usersAgentesaude);
+      this.toast.showMessageBottom('Usuário registrado com sucesso !!!', 'secondary');
+      this.router.navigate(['login']);
+    } catch (error) {
+      this.toast.showMessageTop(error,'danger');
+    }
   }
 
 }

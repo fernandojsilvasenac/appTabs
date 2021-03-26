@@ -10,8 +10,8 @@ const routes: Routes = [
     children: [
       {
         path: 'pain',
-        loadChildren: () => import('../pain/pain.module').then( m => m.PainPageModule),
-        canActivate: [AuthGuard]
+        loadChildren: () => import('../pain/pain.module').then( m => m.PainPageModule)
+        // canActivate: [AuthGuard]
       },
       {
         path: 'symptoms',

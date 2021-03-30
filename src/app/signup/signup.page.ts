@@ -5,6 +5,7 @@ import { UsersAgentesaude } from './../users/shared/users-agentesaude';
 import { UsersPaciente } from './../users/shared/users-paciente';
 import { ToastService } from './../shared/toast.service';
 import { AuthService } from './../shared/auth.service';
+import { CepService } from './../shared/cep.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 
@@ -28,6 +29,7 @@ export class SignupPage implements OnInit {
   constructor(private auth:AuthService,
     private professionalService: ProfessionalService,
     private afa: AngularFireAuth,
+    private cepService: CepService,
     private toast: ToastService,
     private router: Router) { }
 
@@ -82,6 +84,25 @@ export class SignupPage implements OnInit {
     } catch (error) {
       this.toast.showMessageTop(error,'danger');
     }
+  }
+
+  async getCep(){
+    try {
+      const result = await this.cepService.getEndereco(this.usersPaciente.zipcode)
+      this.popularDadosCep(result);
+    } catch (error) {
+      this.toast.showMessageBottom(error, 'danger');
+    }
+  }
+
+  popularDadosCep(dados){
+    const { cep, logradouro, complemento, bairro, localidade, uf } = dados ;
+    // this.usersPaciente.address = dados.logradouro;
+    this.usersPaciente.address = logradouro;
+    this.usersPaciente.address_city = localidade;
+    this.usersPaciente.address_district = bairro;
+    this.usersPaciente.address_state = uf;
+    this.usersPaciente.address_complement = complemento;
   }
 
 }

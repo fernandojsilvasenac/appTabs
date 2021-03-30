@@ -35,12 +35,8 @@
     </ion-item>
 
     <ion-item *ngIf="tipousuario=='paciente'">
-      <ion-label position="stacked">Cartão SUS</ion-label>
-      <ion-input name="cartaosus" type="text" placeholder="" [(ngModel)]="usersPaciente.cartaosus"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="tipousuario=='paciente'">
       <ion-label position="stacked">Cep</ion-label>
-      <ion-input name="zipcode" type="text" placeholder="" [(ngModel)]="usersPaciente.zipcode"></ion-input>
+      <ion-input name="zipcode" type="text" placeholder="" [(ngModel)]="usersPaciente.zipcode" (ionBlur)="getCep($event)"></ion-input>
     </ion-item>
     <ion-item *ngIf="tipousuario=='paciente'">
       <ion-label position="stacked">Endereço</ion-label>
@@ -50,6 +46,11 @@
       <ion-label position="stacked">Número</ion-label>
       <ion-input name="address_number" type="text" placeholder="" [(ngModel)]="usersPaciente.address_number"></ion-input>
     </ion-item>
+    <ion-item *ngIf="tipousuario=='paciente'">
+      <ion-label position="stacked">Complemento</ion-label>
+      <ion-input name="cartaosus" type="text" placeholder="" [(ngModel)]="usersPaciente.address_complement"></ion-input>
+    </ion-item>
+
     <ion-item *ngIf="tipousuario=='paciente'">
       <ion-label position="stacked">Bairro</ion-label>
       <ion-input name="address_district" type="text" placeholder="Bairro" [(ngModel)]="usersPaciente.address_district"></ion-input>

@@ -1,0 +1,33 @@
+ion-content.backgroundContent{
+  --background: url('../../assets/imgs/corpohumano.png') no-repeat center center scroll;
+  --background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+.humanoContent{
+  position:relative;
+  width: 100vw;
+  height: 100vh;
+  border: 5px solid #000;
+}
+.humanoCabeca{
+  position:absolute;
+  left: 45%;
+  top: 5%;
+  width: 20%;
+  height: 12.5%;
+  border: 5px solid red;
+}
+
+.container {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  text-align: center;
+  gap: 0.25px;
+}
+
+div.intensidade{
+  font-size: 0.45rem;
+  font-weight: 700;
+  font-family:Verdana, Geneva, Tahoma, sans-serif
+}

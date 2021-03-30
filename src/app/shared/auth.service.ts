@@ -40,7 +40,18 @@ export class AuthService {
   }
 
   registerUserPaciente(user: UsersPaciente, id: string){
-        const { tipousuario, name, email, cartaosus, faixaetaria  } = user;
+        const { tipousuario,
+          name,
+          email,
+          cartaosus,
+          faixaetaria,
+          zipcode,
+          address,
+          address_district,
+          address_number,
+          address_city,
+          address_state,
+          address_complement, } = user;
         this.afs.collection('users').doc(id).set(
           {
             tipousuario: tipousuario,
@@ -48,6 +59,13 @@ export class AuthService {
             email: email,
             cartaosus: cartaosus,
             faixaetaria: faixaetaria,
+            zipcode: zipcode,
+            address: address,
+            address_district: address_district,
+            address_number: address_number,
+            address_city: address_city,
+            address_state: address_state,
+            address_complement: address_complement
           }
         )
       }

@@ -7,10 +7,11 @@ export class UsersPaciente {
   faixaetaria?: string; /** criança, jovens, adultos e idodos */
   email?: string;
   password?: string;
-  zipcode?: string;
-  address?: string;
-  address_number?: string;
-  address_district?: string;
-  address_city?: string;
-  address_state?: string;
+  zipcode?: string = "";
+  address?: string = "";
+  address_number?: string = "";
+  address_district?: string = "";
+  address_city?: string = "";
+  address_state?: string = "";
+  address_complement?: string = "";
 }

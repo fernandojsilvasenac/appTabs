@@ -107,7 +107,7 @@
 
     <ion-item>
       <ion-label position="stacked">Senha</ion-label>
-      <ion-input name="password" type="password" [(ngModel)]="password"></ion-input>
+      <ion-input name="password" type="password" placeholder="sugerimos que coloque seu CPF" [(ngModel)]="password" (ionBlur)="validaCPF($event)"></ion-input>
     </ion-item>
 
     <ion-button *ngIf="tipousuario=='paciente'" expand="block" color="light" (click)="registerPaciente()">Cadastrar</ion-button>

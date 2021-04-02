@@ -7,6 +7,7 @@ import { ToastService } from './../shared/toast.service';
 import { AuthService } from './../shared/auth.service';
 import { CepService } from './../shared/cep.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { ValidaCpfService } from './../shared/valida-cpf.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -30,6 +31,7 @@ export class SignupPage implements OnInit {
     private professionalService: ProfessionalService,
     private afa: AngularFireAuth,
     private cepService: CepService,
+    private validaCPFService: ValidaCpfService,
     private toast: ToastService,
     private router: Router) { }
 
@@ -39,6 +41,12 @@ export class SignupPage implements OnInit {
     this.professionalService.getAll().subscribe( (data:any) => {
       this.professionals = data;
     });
+  }
+
+  validaCPF(){
+    if (this.validaCPFService.isValidCPF(this.password) == false) {
+      this.toast.showMessageTop('CPF Inválido','danger');
+    }
   }
 
   setProfessional(professional:any){

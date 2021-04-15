@@ -10,7 +10,7 @@ import { ToastService } from './toast.service';
 })
 export class AuthGuard implements CanActivate {
   username: string;
-  userid: string;
+  public userid: string;
 
   constructor(
     private router: Router,
@@ -31,15 +31,17 @@ export class AuthGuard implements CanActivate {
           this.router.navigate(['/login']);
           this.toast.showMessageTop('Usuário não logado!!!', 'warning');
         }
-        // else {
-        //   //
-        //   this.afa.authState.subscribe(user =>{
-        //     this.userid = user.uid;
-        //     this.username = user.displayName;
-        //     console.log(this.userid);
-        //     console.log(this.username)
-        //   })
-        // }
+        else {
+          //
+          this.afa.authState.subscribe(user =>{
+            this.userid = user.uid;
+            this.router.navigate(['profile',{id: this.userid }]);
+
+            // this.username = user.displayName;
+            // console.log(this.userid);
+            // console.log(this.username)
+          })
+        }
 
       })
     )

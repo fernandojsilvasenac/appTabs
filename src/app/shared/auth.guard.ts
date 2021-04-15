@@ -35,7 +35,7 @@ export class AuthGuard implements CanActivate {
           //
           this.afa.authState.subscribe(user =>{
             this.userid = user.uid;
-            this.router.navigate(['profile',{id: this.userid }]);
+            this.router.navigate(['profile',this.userid]);
 
             // this.username = user.displayName;
             // console.log(this.userid);

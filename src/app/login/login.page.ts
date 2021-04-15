@@ -29,6 +29,7 @@ export class LoginPage implements OnInit {
 
     try {
       await this.auth.login(this.login);
+      this.router.navigate(['/profile']);
       this.toast.showMessageBottom('Usuário logado!!!', 'secondary');
     } catch (error) {
       // this.toast.showMessageTop(error,'danger');

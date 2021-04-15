@@ -6,7 +6,7 @@ import { AuthGuard } from './shared/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
     // canActivate: [AuthGuard]
   },
   {
@@ -18,8 +18,14 @@ const routes: Routes = [
     loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
   },
   {
+    path: 'profile',
+    loadChildren: () => import('./users/profile/profile.module').then( m => m.ProfilePageModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'profile/:id',
-    loadChildren: () => import('./users/profile/profile.module').then( m => m.ProfilePageModule)
+    loadChildren: () => import('./users/profile/profile.module').then( m => m.ProfilePageModule),
+    canActivate: [AuthGuard]
   }
 
 

@@ -1,6 +1,7 @@
 import { AuthService } from './../shared/auth.service';
 import { Component } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabs',
@@ -10,6 +11,7 @@ import { ActionSheetController } from '@ionic/angular';
 export class TabsPage {
 
   constructor(public actionSheetController: ActionSheetController,
+    private router: Router,
     private auth: AuthService) {}
 
   async presentActionSheet() {
@@ -36,10 +38,11 @@ export class TabsPage {
           console.log('Play clicked');
         }
       }, {
-        text: 'Favorite',
+        text: 'Perfil do Usuário',
         icon: 'heart',
         handler: () => {
           console.log('Favorite clicked');
+          this.router.navigate(['/profile']);
         }
       }, {
         text: 'Sair / Logout',

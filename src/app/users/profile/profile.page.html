@@ -1,9 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-title>Perfil do Usuário</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+<h2 class="ion-text-center">{{userName}}</h2>
 </ion-content>
+<ion-footer>
+  <ion-button expand="block" color="secondary"  [routerLink]="['/tabs']">Fechar</ion-button>
+</ion-footer>
